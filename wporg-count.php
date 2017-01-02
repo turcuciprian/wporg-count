@@ -130,10 +130,14 @@ function get_plugin_install_count( $plugin ) {
 
 if(!function_exists('abRoutesInit')){add_action('rest_api_init', 'abRoutesInit');
   function abRoutesInit($generalArr){
-    register_rest_route('downloads', '/total',array('methods' => 'GET','callback' => 'totalDownloadsCallback','args' => array()));
+    register_rest_route('plugins', '/stats',array('methods' => 'GET','callback' => 'totalDownloadsCallback','args' => array()));
   }
 }
 function totalDownloadsCallback(){
   $returnArr['signatureOne'] = get_plugin_install_count('signature-one');
+  $returnArr['scrollToTopOne'] = get_plugin_install_count('scroll-to-top-one');
+  $returnArr['socialIconsOne'] = get_plugin_install_count('social-icons-one');
+  $returnArr['magnificPopupOne'] = get_plugin_install_count('magnific-popup-one');
+  $returnArr['regenerateThumbnailsAdvanced'] = get_plugin_install_count('regenerate-thumbnails-advanced');
   return $returnArr;
 }
