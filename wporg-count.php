@@ -128,5 +128,12 @@ function get_plugin_install_count( $plugin ) {
 	}
 }
 
-  echo get_plugin_install_count('contact-form-7');
-  exit;
+if(!function_exists('abRoutesInit')){add_action('rest_api_init', 'abRoutesInit');
+  function abRoutesInit($generalArr){
+    register_rest_route('downloads', '/total',array('methods' => 'GET','callback' => 'totalDownloadsCallback','args' => array()));
+  }
+}
+function totalDownloadsCallback(){
+  $returnArr['signatureOne'] = get_plugin_install_count('signature-one');
+  return $returnArr;
+}
