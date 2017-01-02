@@ -128,7 +128,8 @@ function get_plugin_install_count( $plugin ) {
 	}
 }
 
-if(!function_exists('psRoutesInit')){add_action('rest_api_init', 'abRoutesInit');
+if(!function_exists('psRoutesInit')){
+  add_action('rest_api_init', 'psRoutesInit');
   function psRoutesInit($generalArr){
     register_rest_route('plugins', '/stats',array('methods' => 'GET','callback' => 'totalDownloadsCallback','args' => array()));
   }
