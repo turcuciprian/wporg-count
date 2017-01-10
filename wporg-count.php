@@ -120,11 +120,17 @@ add_action( 'init', 'get_plugin_install_count' );
 function get_plugin_install_count( $plugin ) {
 	$api = plugins_api( 'plugin_information', array(
 		'slug' => $plugin,
-		'fields' => array( 'active_installs' => true )
+		'fields' => array(
+      'active_installs' => true ,
+      'downloaded' => true ,
+    )
 	) );
 
 	if( ! is_wp_error( $api ) ) {
-		return $api->downloaded;
+    $returnArr=array();
+    $returnArr['downloaded']=$api->downloaded;
+    $returnArr['active']=$api->active_installs;
+		return $returnArr;
 	}
 }
 
@@ -135,10 +141,6 @@ if(!function_exists('psRoutesInit')){
   }
 }
 function totalDownloadsCallback(){
-  $returnArr['signatureOne'] = get_plugin_install_count('signature-one');
-  $returnArr['scrollToTopOne'] = get_plugin_install_count('scroll-to-top-one');
-  $returnArr['socialIconsOne'] = get_plugin_install_count('social-icons-one');
-  $returnArr['magnificPopupOne'] = get_plugin_install_count('magnific-popup-one');
-  $returnArr['regenerateThumbnailsAdvanced'] = get_plugin_install_count('regenerate-thumbnails-advanced');
+  $returnArr['countdownTimerOne'] = get_plugin_install_count('countdown-timer-one');
   return $returnArr;
 }
