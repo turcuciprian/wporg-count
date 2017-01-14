@@ -141,6 +141,7 @@ if(!function_exists('psRoutesInit')){
   }
 }
 function totalDownloadsCallback(){
-  $returnArr['countdownTimerOne'] = get_plugin_install_count('countdown-timer-one');
+  $returnArr['cto'] = get_plugin_install_count('countdown-timer-one');
+  $returnArr['rta'] = get_plugin_install_count('regenerate-thumbnails-advanced');
   return $returnArr;
 }
